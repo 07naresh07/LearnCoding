@@ -1,3 +1,4 @@
+#Translate .txt file
 from deep_translator import GoogleTranslator
 
 input_language = "en"
