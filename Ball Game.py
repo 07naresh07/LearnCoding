@@ -9,6 +9,8 @@ tk.title("Ball Game")
 canvas = Canvas(tk, height = 400, width = 500, bd=0, highlightthickness=0, bg='skyblue')
 canvas.pack()
 tk.update()
+counter = 0
+score = canvas.create_text(30, 10, text=f"Score: {counter}", font=('arial', 10), fill='black' )
 
 class Ball:
     def __init__(self, canvas, paddle1, paddle2, color):
@@ -41,6 +43,7 @@ class Ball:
         return False
         
     def draw(self):
+        global counter
         self.canvas.move(self.id, self.x, self.y)
         pos = self.canvas.coords(self.id)
         if pos[1]<=0:
@@ -59,8 +62,15 @@ class Ball:
             self.canvas.create_text(250, 200, text='GAME OVER', fill='red')
         if self.hitPaddle1(pos)==True:
             self.x=3
+            counter+=1
+            self.updateScore()
         if self.hitPaddle2(pos)==True:
             self.x=-3
+            counter+=1
+            self.updateScore()
+            
+    def updateScore(self):
+        canvas.itemconfig(score, text=f"Score: {counter}")
             
 class Paddle1:
     def __init__(self, canvas, color):
