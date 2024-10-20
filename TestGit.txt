@@ -1,1 +1,0 @@
-This is test file. Just trying to work locally and commit to GitHub later.
